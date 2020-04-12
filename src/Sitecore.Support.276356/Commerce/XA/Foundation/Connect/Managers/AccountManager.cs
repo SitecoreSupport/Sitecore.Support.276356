@@ -34,8 +34,10 @@ namespace Sitecore.Support.Commerce.XA.Foundation.Connect.Managers
 
             try
             {
-                var getUserResponse = this.GetUser(emailAddress);
-                
+
+                #region - modified part of the code - added UserDomain (as a domain) before user's email
+                var getUserResponse = this.GetUser(StorefrontContext.CurrentStorefront.UserDomain + "\\" + emailAddress);
+                #endregion
 
                 if (!getUserResponse.ServiceProviderResult.Success || getUserResponse.Result == null)
                 {
